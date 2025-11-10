@@ -31,7 +31,6 @@
         #posterWrapper {
             position: relative;
             width: 100%;
-            /* Fixed width based on the aspect ratio of the new image */
             width: 800px; /* Original image width 2048, scaled down */
             height: 450px; /* Original image height 1152, scaled down to maintain ratio */
             margin: auto;
@@ -57,52 +56,47 @@
 
         /* --- NEW PIXEL COORDINATES for the provided image --- */
         /* Based on image dimensions (2048x1152) scaled to (800x450) */
-        /* Scale factor = 800 / 2048 = 0.390625 */
 
         #employeePhotoPreview {
             position: absolute;
-            /* Beige square center (1024, 576) from image analysis */
-            /* Beige square size approx (650x650) from image analysis */
-            /* Scaled top: (576 - 325) * 0.390625 = 251 * 0.390625 = 98.04px */
-            /* Scaled left: (1024 - 325) * 0.390625 = 699 * 0.390625 = 273.35px */
-            /* Scaled width/height: 650 * 0.390625 = 253.9px */
-            top: 98px;
-            left: 273px;
-            width: 254px;
-            height: 254px;
-            border-radius: 15%; /* Assuming a slightly rounded rectangle based on image */
+            /* Adjusted top to move upwards */
+            top: 75px; /* Was 98px, moved up by 23px */
+            /* Adjusted left to keep it centered horizontally */
+            left: 285px; /* Was 273px, adjusted to re-center due to smaller size */
+            /* Reduced width and height to make it smaller */
+            width: 230px; /* Was 254px, reduced */
+            height: 230px; /* Was 254px, reduced */
+            border-radius: 12%; /* Slightly adjusted border-radius for new size */
             object-fit: cover;
-            background-color: #f7f0e6; /* Beige color for placeholder */
-            border: 1px solid rgba(0,0,0,0.1); /* Subtle border for definition */
-            padding: 5px; /* Add some padding so image doesn't touch edges */
+            background-color: #f7f0e6;
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 2px; /* Reduced padding */
         }
 
         #text-container {
             position: absolute;
-            /* Adjust based on the area below the beige rectangle in the image */
-            /* This is a guess; you may need to fine-tune */
-            top: 365px; /* Roughly below the beige square */
-            left: 0%; /* Spanning full width to allow centering or specific alignment */
+            top: 365px;
+            left: 0%;
             width: 100%;
-            height: 50px; /* Sufficient height for text lines */
+            height: 50px;
 
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center; /* Center the text by default */
-            color: white; /* Text color for visibility on dark background */
+            align-items: center;
+            color: white;
             font-weight: 600;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Added for readability */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
         }
 
         .poster-text {
             font-family: 'Inter', sans-serif;
             font-weight: 700;
-            font-size: 14px; /* Initial fixed pixel size for this new background */
-            color: white; /* Ensure text is white for contrast */
-            white-space: nowrap; /* Prevent wrapping */
+            font-size: 14px;
+            color: white;
+            white-space: nowrap;
             line-height: 1.2;
-            margin: 0; /* Remove default paragraph margins */
+            margin: 0;
         }
 
         #posterForm label,
@@ -195,7 +189,7 @@
                         <p id="p-name" class="poster-text"></p>
                         <p id="p-branch" class="poster-text"></p>
                         <p id="p-cluster" class="poster-text"></p>
-                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -205,7 +199,7 @@
     </div>
 
     <div class="version-number">
-        Version 4.0 - New Background Integration
+        Version 4.1 - Photo Smaller & Upwards
     </div>
     <div class="copyright-text">
         Copyright © MADHAV KALRA
@@ -216,29 +210,16 @@
         const loadingIndicator = document.getElementById('loadingIndicator');
         const posterContainer = document.getElementById('posterContainer');
         const downloadBtn = document.getElementById('downloadBtn');
-        // const premiumInput = document.getElementById('premium'); // Removed as per new requirements
 
         const employeePhotoPreview = document.getElementById('employeePhotoPreview');
         const pName = document.getElementById('p-name');
         const pBranch = document.getElementById('p-branch');
-        const pCluster = document.getElementById('p-cluster'); // New field for cluster
-        // const pPremium = document.getElementById('p-premium'); // Removed
-        // const pNop = document.getElementById('p-nop'); // Removed
+        const pCluster = document.getElementById('p-cluster');
 
         const posterBg = document.getElementById('posterBg');
         posterBg.onerror = function() {
             showMessage("Error: Could not load 'sampoorna-bg-new.png'. Make sure it is in the same folder as the HTML file.");
         };
-
-        // Removed premium input listener
-        /* premiumInput.addEventListener('input', function(event) {
-            const value = this.value.replace(/[^0-9]/g, '');
-            if (value) {
-                this.value = `₹${Number(value).toLocaleString('en-IN')}`;
-            } else {
-                this.value = '';
-            }
-        }); */
 
         posterForm.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -264,9 +245,7 @@
                 drawPoster(e.target.result, {
                     employeeName: document.getElementById('employeeName').value,
                     branch: document.getElementById('branch').value,
-                    cluster: document.getElementById('cluster').value, // Get cluster value
-                    // premium: document.getElementById('premium').value, // Removed
-                    // nop: document.getElementById('nop').value // Removed
+                    cluster: document.getElementById('cluster').value,
                 });
 
                 setTimeout(() => {
@@ -301,9 +280,7 @@
 
             pName.innerText = `Name: ${data.employeeName}`;
             pBranch.innerText = `Branch: ${data.branch}`;
-            pCluster.innerText = `Cluster: ${data.cluster}`; // Display cluster
-            // pPremium.innerText = `Premium: ${data.premium}`; // Removed
-            // pNop.innerText = `NOP: ${data.nop}`; // Removed
+            pCluster.innerText = `Cluster: ${data.cluster}`;
         }
 
         downloadBtn.addEventListener('click', function() {
@@ -335,4 +312,3 @@
     </script>
 </body>
 </html>
-```http://googleusercontent.com/image_generation_content/0
