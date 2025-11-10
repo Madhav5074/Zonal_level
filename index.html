@@ -56,12 +56,10 @@
 
         #employeePhotoPreview {
             position: absolute;
-            top: 80px; /* Vertical position from last request */
-            /* HORIZONTALLY CENTERED */
+            top: 80px; 
             left: 50%;
             transform: translateX(-50%);
-            
-            width: 180px; /* Size from last request */
+            width: 180px; 
             height: 180px;
             border-radius: 10%; 
             object-fit: cover;
@@ -72,22 +70,19 @@
 
         #text-container {
             position: absolute;
-            top: 280px; /* Vertical position from last request */
-            /* HORIZONTALLY CENTERED */
+            top: 280px; 
             left: 50%;
             transform: translateX(-50%);
-            
-            width: 260px; /* Slightly wider for centered text */
+            width: 260px; 
             height: 70px; 
 
-            /* ADDED BASE FOR TEXT */
-            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black base */
+            background-color: rgba(0, 0, 0, 0.6); 
             border-radius: 10px;
             
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center; /* Center-align text */
+            align-items: center; 
             padding: 5px; 
             color: white;
             font-weight: 600;
@@ -100,7 +95,7 @@
             font-size: 14px;
             color: white;
             white-space: nowrap;
-            line-height: 1.4; /* Adjusted line spacing */
+            line-height: 1.4; 
             margin: 0;
         }
 
@@ -185,7 +180,7 @@
         <div id="posterContainer" class="flex flex-col items-center gap-6">
 
             <div id="posterWrapper">
-                <img id="posterBg" src="./zonal-awards-bg.jpg" alt="Zonal Head Training Background">
+                <img id="posterBg" src="./sampoorna-bg-new.png" alt="Zonal Head Training Background">
 
                 <div class="overlay-container">
                     <img id="employeePhotoPreview" src="" alt="Staff Photo">
@@ -204,7 +199,7 @@
     </div>
 
     <div class="version-number">
-        Version 4.3 - Centered with Base
+        Version 4.4 - Centered, Base, Correct Img Name
     </div>
     <div class="copyright-text">
         Copyright © MADHAV KALRA
@@ -224,7 +219,7 @@
         const posterBg = document.getElementById('posterBg');
         posterBg.onerror = function() {
             // Updated error message
-            showMessage("Error: Could not load 'zonal-awards-bg.jpg'. Make sure it is in the same folder as the HTML file.");
+            showMessage("Error: Could not load 'sampoorna-bg-new.png'. Make sure it is in the same folder as the HTML file.");
         };
 
         posterForm.addEventListener('submit', function(event) {
@@ -239,7 +234,7 @@
             }
 
             if (posterBg.complete === false || posterBg.naturalHeight === 0) {
-                 showMessage("Error: Background image 'zonal-awards-bg.jpg' is missing or could not be loaded. Please check the file name and location.");
+                 showMessage("Error: Background image 'sampoorna-bg-new.png' is missing or could not be loaded. Please check the file name and location.");
                  return;
             }
 
